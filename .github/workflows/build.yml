@@ -18,11 +18,15 @@ jobs:
           distribution: 'temurin'
           cache: gradle
 
-      - name: Setup Android SDK & NDK
+      - name: Setup Android SDK
         uses: android-actions/setup-android@v3
         with:
-          ndk-version: '25.2.9519653'
-          api-level: 33
+          accept-android-sdk-licenses: true
+          packages: >
+            platform-tools
+            platforms;android-33
+            build-tools;34.0.0
+            ndk;25.2.9519653
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
@@ -35,3 +39,4 @@ jobs:
         with:
           name: CarPToCarL-Release
           path: app/build/outputs/apk/release/app-release.apk
+
